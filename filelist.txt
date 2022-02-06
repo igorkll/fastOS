@@ -68,11 +68,9 @@
 /lib/core/full_keyboard.lua
 /lib/bit32.lua
 /readonlyData/settings.lua
-/readonlyData/пираты корибского моря.mid
-/readonlyData/жуки - батарейка.mid
+/readonlyData/midi1.mid
+/readonlyData/midi2.mid
 /readonlyData/README.txt
-/readonlyData/coffi dance.mid
-/readonlyData/tetris theme.mid
 /readonlyData/appMarket.lua
 /usr/man/useradd
 /usr/man/unalias
