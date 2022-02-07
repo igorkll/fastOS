@@ -194,7 +194,7 @@ local function fileDescriptor(path)
     local exception = getException(path)
     if exception == "txt" or exception == "log" then
         local dop = "-"
-        if isSystem(path) then dop = dop .. "r" end
+        if isSystem(path) or isSoft(path) then dop = dop .. "r" end
         runFile("edit", false, path, dop)
         return true
     elseif exception == "lua" then
@@ -204,7 +204,7 @@ local function fileDescriptor(path)
         end
     elseif exception == "pic" then
         local dop = "-f"
-        if isSystem(path) then dop = dop .. "r" end
+        if isSystem(path) or isSoft(path) then dop = dop .. "r" end
         runFile("paint", false, path, dop)
         return true
     elseif exception == "mid" or exception == "midi" then
@@ -222,6 +222,7 @@ local function fileDescriptor(path)
     end
     return nil, "this file in not supported"
 end
+shell_fileDescriptor = fileDescriptor
 
 local function enterData(text)
     local ok, out = executeInZone(false, function() term.write(text..": ") return io.read() end)
@@ -270,7 +271,7 @@ while true do
             if url and url ~= "" then
                 local name = enterData("name")
                 if name and name ~= "" then
-                    if name:find("%/") then
+                    if name:find("%/") or name:find("%\\") then
                         gui.splash("/ this unsupported char")
                     else
                         runFile("wget", true, url, fs.concat("/data", name))
@@ -283,7 +284,7 @@ while true do
             if code and code ~= "" then
                 local name = enterData("name")
                 if name and name ~= "" then
-                    if name:find("%/") then
+                    if name:find("%/") or name:find("%\\") then
                         gui.splash("/ this unsupported char")
                     else
                         runFile("pastebin", true, "get", code, fs.concat("/data", name))
