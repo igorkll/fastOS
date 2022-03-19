@@ -68,4 +68,5 @@ for i = 1, #filelist do
     else
         if not options.q then print("error: "..(err or "unlown")) end
     end
+    os.sleep()
 end
