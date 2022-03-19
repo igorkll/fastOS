@@ -7,7 +7,7 @@ local internet = component.internet
 
 ----------------------------------------------------
 
-local args = shell.parse(...)
+local args, options = shell.parse(...)
 local url = args[1]
 local installpath = args[2]
 
@@ -62,10 +62,10 @@ for i = 1, #filelist do
     local fileurl = url..file
     local filedata, err = getInternetFile(fileurl)
     local fullPath = fs.concat(installpath, file)
-    print(fullPath)
+    if not options.q then print(fullPath) end
     if filedata then
         su.saveFile(fullPath, filedata)
     else
-        print("error: "..(err or "unlown"))
+        if not options.q then print("error: "..(err or "unlown")) end
     end
 end
