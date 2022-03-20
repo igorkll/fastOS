@@ -57,7 +57,9 @@ filelist = split(filelist, "\n")
 
 ----------------------------------------------------
 
+_G.installFiles = #filelist
 for i = 1, #filelist do
+    _G.installedFiles = i
     local file = filelist[i]
     local fileurl = url..file
     local filedata, err = getInternetFile(fileurl)
